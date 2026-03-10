@@ -1,0 +1,16 @@
+html {
+  height: 100vh;
+  background-color: lightblue;
+}
+h1 {
+  font-size: 130px;
+  text-decoration: solid;
+  font-weight: 100;
+  color: white;
+}
+#texto-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
