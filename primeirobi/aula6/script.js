@@ -62,9 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 150);
   }
 
-  // 📌 IMPLEMENTAÇÃO DA DELEGAÇÃO DE EVENTOS
-  // Como garantir que os itens, criados dinamicamente, também possam ser removidos ao serem clicados?
-  // ✅ Solução: Delegação de eventos - o evento de clique é capturado no elemento pai <ul>
+  // Como garantir que os itens, criados dinamicamente, também possam ser removidos ao serem clicados
+  // Delegação de eventos - o evento de clique é capturado no elemento pai <ul>
   // que já existe no DOM desde o início. Assim, qualquer <li> adicionado futuramente
   // também terá seu clique detectado e poderá ser removido.
 
@@ -88,12 +87,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Adicionar tarefa ao pressionar a tecla "Enter" no campo de input
   taskInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-      event.preventDefault(); // Previne comportamento padrão (se houver)
+      event.preventDefault(); // Previne comportamento padrão
       addTask();
     }
   });
 
-  // Bônus: Limpar o campo ao clicar com duplo clique (opcional, mas útil)
+  // Limpar o campo ao clicar com duplo clique
   taskInput.addEventListener("dblclick", function () {
     taskInput.value = "";
     taskInput.focus();
@@ -115,76 +114,8 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   document.head.appendChild(styleSheet);
 
-  // Pequeno atalho: se o usuário tentar adicionar com input vazio, o placeholder já avisa
+  // Se o usuário tentar adicionar com input vazio, o placeholder já avisa
   console.log(
-    "✅ To-Do List carregada com sucesso! Use delegação de eventos para remover tarefas.",
+    " To-Do List carregada com sucesso! Use delegação de eventos para remover tarefas.",
   );
 });
-
-// ==============================================
-// VERSÃO ALTERNATIVA COM CHECKBOX (OPCIONAL)
-// Caso queira implementar a funcionalidade extra de checkbox,
-// descomente o código abaixo e substitua a função addTask
-// ==============================================
-/*
-// Versão com checkbox (tarefas concluídas)
-function addTaskWithCheckbox() {
-    const taskText = taskInput.value.trim();
-    if (taskText === '') return;
-    
-    const li = document.createElement('li');
-    li.style.display = 'flex';
-    li.style.alignItems = 'center';
-    li.style.gap = '12px';
-    li.style.cursor = 'default';
-    
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.style.width = '20px';
-    checkbox.style.height = '20px';
-    checkbox.style.cursor = 'pointer';
-    
-    const span = document.createElement('span');
-    span.textContent = taskText;
-    span.style.flex = '1';
-    span.style.wordBreak = 'break-word';
-    
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = '🗑️';
-    deleteBtn.style.background = 'none';
-    deleteBtn.style.border = 'none';
-    deleteBtn.style.cursor = 'pointer';
-    deleteBtn.style.fontSize = '18px';
-    deleteBtn.style.opacity = '0.6';
-    deleteBtn.style.transition = 'opacity 0.2s';
-    
-    deleteBtn.addEventListener('mouseenter', () => deleteBtn.style.opacity = '1');
-    deleteBtn.addEventListener('mouseleave', () => deleteBtn.style.opacity = '0.6');
-    
-    // Marcar como concluída
-    checkbox.addEventListener('change', function() {
-        if (checkbox.checked) {
-            span.style.textDecoration = 'line-through';
-            span.style.color = '#999';
-            li.style.background = '#f0f0f0';
-        } else {
-            span.style.textDecoration = 'none';
-            span.style.color = '#333';
-            li.style.background = '#f8f9fa';
-        }
-    });
-    
-    // Remover ao clicar no botão delete
-    deleteBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        li.remove();
-    });
-    
-    li.appendChild(checkbox);
-    li.appendChild(span);
-    li.appendChild(deleteBtn);
-    taskList.appendChild(li);
-    taskInput.value = '';
-    taskInput.focus();
-}
-*/
